@@ -22,4 +22,5 @@ abstract public class Account {
 		System.out.println("기본이자>" + (interestRate * 100) + "%");
 	}
 
+	public abstract void depositMoney(int amount);
 }

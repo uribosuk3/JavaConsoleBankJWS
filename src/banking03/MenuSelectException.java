@@ -1,10 +1,11 @@
 package banking03;
 
-public class MenuSelectException {
+public class MenuSelectException extends Exception {
 
-	public static void main(String[] args) {
-
-		
+	public MenuSelectException() {
+		super("예외발생됨.");
 	}
+		
+	
 
 }

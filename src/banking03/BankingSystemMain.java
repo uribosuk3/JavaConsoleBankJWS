@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class BankingSystemMain {
 
+	public static Scanner scan = new Scanner(System.in);
+	
 	public static void menuShow() {
 		System.out.println("-----Menu------");
 		System.out.println("1.계좌개설");
@@ -16,8 +18,7 @@ public class BankingSystemMain {
 	}
 	
 	public static void main(String[] args) {
-		
-		Scanner scan = new Scanner(System.in);
+		//Scanner scan = new Scanner(System.in);
 		AccountManager handler = new AccountManager();
 				
 		while(true) {
@@ -27,7 +28,7 @@ public class BankingSystemMain {
 			scan.nextLine();
 			
 			if(choice < 1 || choice > 5) {
-				System.out.println("예외 발생됨.");
+				System.out.println("메뉴는 1~5사이의 정수를 입력하세요");
 				continue;
 			}
 			
@@ -52,6 +53,7 @@ public class BankingSystemMain {
 			catch (InputMismatchException e) {
 				System.out.println("예외 발생됨.");
 				scan.nextLine();
+				return;
 			}
 		}
 	}
