@@ -11,7 +11,7 @@ public class AccountManager {
 	public AccountManager() {
 	    accounts = new Account[50];
 	    numOfAccounts = 0;
-}
+	}
 	
 	String Account, name;
 	int balance;
@@ -19,18 +19,17 @@ public class AccountManager {
 	
 	public void makeAccount() {
 		System.out.println("***신규계좌개설***");
-	while (true) {
-		System.out.println("-----계좌선택-----");
-		Scanner scan = new Scanner(System.in);
-		System.out.println("1. 보통계좌");
-		System.out.println("2. 신용신뢰계좌");
-		System.out.print("선택:");
-		
-		int choice = scan.nextInt();
-		scan.nextLine();
-		String newAccountNum;
-		
-		if(choice == 1) {
+		while (true) {
+			System.out.println("-----계좌선택-----");
+			Scanner scan = new Scanner(System.in);
+			System.out.println("1. 보통계좌");
+			System.out.println("2. 신용신뢰계좌");
+			System.out.print("선택:");
+			
+			int choice = scan.nextInt();
+			scan.nextLine();
+			String newAccountNum;
+			
 			System.out.print("계좌번호:");Account = scan.nextLine();
 			System.out.print("고객이름:");name = scan.nextLine();
 			System.out.print("잔고:");balance = scan.nextInt();
@@ -38,36 +37,31 @@ public class AccountManager {
 			int interestRate = scan.nextInt();
 			scan.nextLine();
 			
-			Account newAccount = new NormalAccount(Account, name, balance,
-											interestRate);
-			accounts[numOfAccounts++] = newAccount;
-			System.out.println("계좌개설이 완료되었습니다.");
-			return;
-		}
-		else if(choice == 2) {
-			System.out.print("계좌번호:");Account = scan.nextLine();
-			System.out.print("고객이름:");name = scan.nextLine();
-			System.out.print("잔고:");balance = scan.nextInt();
-			System.out.print("기본이자%(정수형태로입력): ");
-			int interestRate = scan.nextInt();
-			scan.nextLine();
-			System.out.print("신용등급(A/B/C): ");
-			char creditGrade = scan.nextLine().charAt(0);
-			
-			HighCreditAccount newHAccount = new HighCreditAccount
-					(Account, name, balance, interestRate, 0.0, creditGrade);
-			accounts[numOfAccounts++] = newHAccount;
-			
-			System.out.println("계좌개설이 완료되었습니다.");
-			return;
-		} 
-		else {
-			System.out.println("예외발생됨.");
-			continue;
-		}
+			if(choice == 1) {
+				Account newAccount = new NormalAccount(Account, name, balance,
+												interestRate);
+				accounts[numOfAccounts++] = newAccount;
+				System.out.println("계좌개설이 완료되었습니다.");
+				return;
+			}
+			else if(choice == 2) {
+				System.out.print("신용등급(A/B/C): ");
+				char creditGrade = scan.nextLine().charAt(0);
+				
+				HighCreditAccount newHAccount = new HighCreditAccount
+						(Account, name, balance, interestRate, 0.0, creditGrade);
+				accounts[numOfAccounts++] = newHAccount;
+				
+				System.out.println("계좌개설이 완료되었습니다.");
+				return;
+			} 
+			else {
+				System.out.println("예외발생됨.");
+				continue;
+			}
+		}																		
 	}
-}
-	
+
 	public void depositMoney() {
 		System.out.println("***입   금***");
 		Scanner scan = new Scanner(System.in);
@@ -128,39 +122,39 @@ public class AccountManager {
 		        if (accounts[i].account.equals(Account)) {
 		            found = true;
 		            
-			if(amount > balance) {
-				System.out.println("잔고가 부족합니다 금액 전체를 출금할까요? (y or n)");
-				String answer = sc.nextLine();
-				
-				if(answer.equalsIgnoreCase("y")) {
-					System.out.println("출금이 완료되었습니다.");
-					accounts[i].balance = 0;
-				}
-				else if (answer.equalsIgnoreCase("n")) {
-					System.out.println("출금 요청이 취소되었습니다.");
-				}
-				else {
-					System.out.println("에러발생됨.");
-				}
-			}
+					if(amount > balance) {
+						System.out.println("잔고가 부족합니다 금액 전체를 출금할까요? (y or n)");
+						String answer = sc.nextLine();
+						
+						if(answer.equalsIgnoreCase("y")) {
+							System.out.println("출금이 완료되었습니다.");
+							accounts[i].balance = 0;
+						}
+						else if (answer.equalsIgnoreCase("n")) {
+							System.out.println("출금 요청이 취소되었습니다.");
+						}
+						else {
+							System.out.println("에러발생됨.");
+						}
+					}
 		        }
 				return;
 			}
 		}
-		       	catch(InputMismatchException e) {
-				System.out.println("숫자를 입력해야 합니다.");
-				scan.nextLine();
-				return;
+		catch(InputMismatchException e) {
+		System.out.println("숫자를 입력해야 합니다.");
+		scan.nextLine();
+		return;
 		}
 		  
-			for(int i=0 ; i<numOfAccounts ; i++) {
-				if(amount > 0 && amount <= accounts[i].balance) {
-					accounts[i].balance -= amount;
-				}
-				else {
-					System.out.println("잔액이 부족합니다.");
-				}	
+		for(int i=0 ; i<numOfAccounts ; i++) {
+			if(amount > 0 && amount <= accounts[i].balance) {
+				accounts[i].balance -= amount;
 			}
+			else {
+					System.out.println("잔액이 부족합니다.");
+			}	
+		}
 	}
 		
 	
@@ -180,9 +174,8 @@ public class AccountManager {
 			HighCreditAccount hca = (HighCreditAccount)accounts[i];
 			System.out.println("신용등급>" + hca.creditGrade);
 		}
-		
 		System.out.println("-----------------");
-	}
+		}
 		System.out.println("전체계좌정보가 출력이 완료되었습니다");
 	}
 }

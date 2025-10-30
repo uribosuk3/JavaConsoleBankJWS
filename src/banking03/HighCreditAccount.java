@@ -17,19 +17,19 @@ public class HighCreditAccount extends Account {
 		super(account, name, balance, interestRate);
 		this.creditGrade = creditGrade;
 		
-	if(creditGrade == 'A') {
-		this.additionalinterestRate = ICustomDefine.A;
+		if(creditGrade == 'A') {
+			this.additionalinterestRate = ICustomDefine.A;
+		}
+		else if (creditGrade == 'B') {
+			this.additionalinterestRate= ICustomDefine.B;
+		}
+		else if (creditGrade == 'C') {
+			this.additionalinterestRate= ICustomDefine.C;
+		}
+		else {
+			this.additionalinterestRate = 0.0;
+		}
 	}
-	else if (creditGrade == 'B') {
-		this.additionalinterestRate= 0.04;
-	}
-	else if (creditGrade == 'C') {
-		this.additionalinterestRate= 0.02;
-	}
-	else {
-		this.additionalinterestRate = 0.0;
-	}
-}
 
 	public void depositMoney(int amount) {
 		int interest = (int)(balance * interestRate);

@@ -33,19 +33,19 @@ public class BankingSystemMain {
 				}
 				
 				switch(choice) {
-				case 1:
+				case ICustomDefine.MAKE :
 					handler.makeAccount();
 					break;
-				case 2:
+				case ICustomDefine.DEPOSIT :
 					handler.depositMoney();
 					break;
-				case 3:
+				case ICustomDefine.WITHDRAW :
 					handler.withdrawMoney();
 					break;
-				case 4:
+				case ICustomDefine.INQUIRE :
 					handler.showAccInfo();
 					break;
-				case 5:
+				case ICustomDefine.EXIT :
 					System.out.println("프로그램종료");
 					return;
 				}	
