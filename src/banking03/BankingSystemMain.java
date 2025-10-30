@@ -24,32 +24,32 @@ public class BankingSystemMain {
 		while(true) {
 			menuShow();
 			try {
-			int choice = scan.nextInt();
-			scan.nextLine();
-			
-			if(choice < 1 || choice > 5) {
-				System.out.println("메뉴는 1~5사이의 정수를 입력하세요");
-				continue;
+				int choice = scan.nextInt();
+				scan.nextLine();
+				
+				if(choice < 1 || choice > 5) {
+					System.out.println("메뉴는 1~5사이의 정수를 입력하세요");
+					continue;
+				}
+				
+				switch(choice) {
+				case 1:
+					handler.makeAccount();
+					break;
+				case 2:
+					handler.depositMoney();
+					break;
+				case 3:
+					handler.withdrawMoney();
+					break;
+				case 4:
+					handler.showAccInfo();
+					break;
+				case 5:
+					System.out.println("프로그램종료");
+					return;
+				}	
 			}
-			
-			switch(choice) {
-			case 1:
-				handler.makeAccount();
-				break;
-			case 2:
-				handler.depositMoney();
-				break;
-			case 3:
-				handler.withdrawMoney();
-				break;
-			case 4:
-				handler.showAccInfo();
-				break;
-			case 5:
-				System.out.println("프로그램종료");
-				return;
-			}	
-		}
 			catch (InputMismatchException e) {
 				System.out.println("예외 발생됨.");
 				scan.nextLine();

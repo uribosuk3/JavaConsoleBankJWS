@@ -60,7 +60,7 @@ public class AccountManager {
 			
 			System.out.println("계좌개설이 완료되었습니다.");
 			return;
-		}
+		} 
 		else {
 			System.out.println("예외발생됨.");
 			continue;
@@ -146,7 +146,7 @@ public class AccountManager {
 		        }
 				return;
 			}
-	}
+		}
 		       	catch(InputMismatchException e) {
 				System.out.println("숫자를 입력해야 합니다.");
 				scan.nextLine();

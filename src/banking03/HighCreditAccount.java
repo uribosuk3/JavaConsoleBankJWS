@@ -18,7 +18,7 @@ public class HighCreditAccount extends Account {
 		this.creditGrade = creditGrade;
 		
 	if(creditGrade == 'A') {
-		this.additionalinterestRate = 0.07;
+		this.additionalinterestRate = ICustomDefine.A;
 	}
 	else if (creditGrade == 'B') {
 		this.additionalinterestRate= 0.04;
