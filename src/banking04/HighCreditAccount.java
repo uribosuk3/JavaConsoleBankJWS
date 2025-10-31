@@ -8,7 +8,8 @@ public class HighCreditAccount extends Account {
 	@Override
 	public void showAccInfo() {
 		super.showAccInfo();
-		System.out.println("신용등급> "+ creditGrade);
+		System.out.print("추가이자율> "+(int)(additionalinterestRate) + "%");
+		System.out.println(", 신용등급> "+ creditGrade);
 	}
 	
 	public HighCreditAccount(String account, String name, int balance,
@@ -37,5 +38,10 @@ public class HighCreditAccount extends Account {
 		balance += interest + additionalinterest + amount;
 		
 		System.out.println("입금이 완료되었습니다.");
+	}
+	
+	@Override
+	public void deleteAccount() {
+		
 	}
 }

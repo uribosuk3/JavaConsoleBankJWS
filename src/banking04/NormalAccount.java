@@ -12,4 +12,8 @@ public class NormalAccount extends Account {
 		balance += interest + amount;
 		System.out.println("입금이 완료되었습니다.");
 	}
+	
+	@Override
+	public void deleteAccount() {
+	}
 }

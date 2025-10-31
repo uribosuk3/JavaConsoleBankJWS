@@ -10,6 +10,7 @@ public interface ICustomDefine {
 	int DEPOSIT = 2;
 	int WITHDRAW = 3;
 	int INQUIRE = 4;
-	int EXIT = 5;
+	int delete = 5;
+	int EXIT = 6;
 	
 }
