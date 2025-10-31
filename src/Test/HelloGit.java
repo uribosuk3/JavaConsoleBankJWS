@@ -7,5 +7,6 @@ public interface HelloGit {
 		System.out.println("1.첫번째 파일입니다.");
 		System.out.println("2-1.노트북 클론 작업 완료");
 		System.out.println("2-2.안녕하세요.");
+		System.out.println("3.깃허브 연동 완료");
 	}
 }
