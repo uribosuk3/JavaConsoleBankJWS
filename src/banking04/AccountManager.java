@@ -11,9 +11,9 @@ public class AccountManager implements ICustomDefine {
 	private void handleDuplicateAccount(banking04.Account newAccount, Scanner scan) {
 	}
 	
-	String Account, name;
-	int balance;
-	double interestRate;
+//	String Account, name;
+//	int balance;
+//	double interestRate;
 	
 	public void makeAccount() {
 		System.out.println("***신규계좌개설***");
@@ -102,7 +102,7 @@ public class AccountManager implements ICustomDefine {
 		System.out.println("계좌번호와 입금할 금액을 입력하세요");
 		
 		System.out.print("계좌번호: ");
-		String Account = scan.nextLine();
+		String accountNumber = scan.nextLine();
 		
 		System.out.print("입금액: ");
 		int amount = scan.nextInt();
@@ -121,27 +121,33 @@ public class AccountManager implements ICustomDefine {
 				scan.nextLine();
 				return;
 			}
-		//챗지피티 활용
-		 Account temp = new NormalAccount(Account, "", 0, 0);
-
-		    if (accounts.contains(temp)) { 
-		        Account target = null;
-		        for (Account acc : accounts) {
-		            if (acc.equals(temp)) {
-		                target = acc;
-		                break;
-		            }
-		        }
-
-		        if (target != null) {
-		            accounts.remove(target); 
-		            target.depositMoney(amount);
-		            accounts.add(target);
-		        }
-		    } else {
-		        System.out.println("해당 계좌가 존재하지 않습니다.");
+		//이 부분 정렬하고..
+		//출금에서 사용한 확장for문 이용해서 계좌를 찾은 후 입금처리 시도
 		
-		    }
+		
+		
+		
+		//챗지피티 활용
+		 ///Account temp = new NormalAccount(Account, "", 0, 0);
+
+//		    if (accounts.contains(temp)) { 
+//		        Account target = null;
+//		        for (Account acc : accounts) {
+//		            if (acc.equals(temp)) {
+//		                target = acc;
+//		                break;
+//		            }
+//		        }
+//
+//		        if (target != null) {
+//		            accounts.remove(target); 
+//		            target.depositMoney(amount);
+//		            accounts.add(target);
+//		        }
+//		    } else {
+//		        System.out.println("해당 계좌가 존재하지 않습니다.");
+//		
+//		    }
 	}
 	
 	public void withdrawMoney() {
@@ -149,7 +155,7 @@ public class AccountManager implements ICustomDefine {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("계좌번호와 출금할 금액을 입력하세요");
 		System.out.print("계좌번호: ");
-		String Account = scan.nextLine();
+		String accountNumber = scan.nextLine();
 		
 		System.out.print("출금액: ");
 		int amount = scan.nextInt();
@@ -159,39 +165,55 @@ public class AccountManager implements ICustomDefine {
 		try {
 			if(amount <= 0) {
 				System.out.println("음수는 출금불가");
+				return;//해당 함수의 실행종료 
 			}	
 			if(amount % 1000 != 0) {
 				System.out.println("1000원 단위로만 출금가능함");
+				return;//해당 함수의 실행종료 
 			}
-					if(amount > balance) {
-						System.out.println("잔고가 부족합니다 금액 전체를 출금할까요? (y or n)");
-						String answer = sc.nextLine();
-						
-						if(answer.equalsIgnoreCase("y")) {
-							System.out.println("잔액 전체 출금이 완료");
-							balance = 0;
-						}
-						else if (answer.equalsIgnoreCase("n")) {
-							System.out.println("출금 요청이 취소되었습니다.");
-						}
-						else {
-							System.out.println("에러발생됨.");
-						}
-					}	else {
-							System.out.println("잔액이 부족합니다.");
-						}	
-		}	catch(InputMismatchException e) {
-				System.out.println("숫자를 입력해야 합니다.");
-				scan.nextLine();
-				return;
-			}	
+			
+			//반복문을 통해서 Set컬렉션에 저장된 인스턴스와 비교해야함.
+			for(Account acc : accounts) {
+				//출금할 계좌 찾기
+				if(accountNumber.equals(acc.account)) {					
+					//잔고가 충분한지 확인 					
+					
+					//출금처리 
+					acc.balance -= amount;
+				}
+			}
+			
+//			if(amount > balance) {
+//				System.out.println("잔고가 부족합니다 금액 전체를 출금할까요? (y or n)");
+//				String answer = sc.nextLine();
+//				
+//				if(answer.equalsIgnoreCase("y")) {
+//					System.out.println("잔액 전체 출금이 완료");
+//					balance = 0;
+//				}
+//				else if (answer.equalsIgnoreCase("n")) {
+//					System.out.println("출금 요청이 취소되었습니다.");
+//				}
+//				else {
+//					System.out.println("에러발생됨.");
+//				}
+//			}	
+//			else {
+//				System.out.println("잔액이 부족합니다.");
+//			}	
+		}	
+		catch(InputMismatchException e) {
+			System.out.println("숫자를 입력해야 합니다.");
+			scan.nextLine();
+			return;
+		}	
 	}
 		
 	public void showAccInfo() {
 	    for(Account acc : accounts) {
 	    	acc.showAccInfo();
-		System.out.println("-----------------");
-		System.out.println("전체계좌정보가 출력이 완료되었습니다");
+			System.out.println("-----------------");
+			System.out.println("전체계좌정보가 출력이 완료되었습니다");
 		}
 	}
 	
