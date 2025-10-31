@@ -8,8 +8,7 @@ import java.util.Set;
 public class AccountManager implements ICustomDefine {
 
 	private Set<Account> accounts = new HashSet<>();
- 
-	public AccountManager() {
+	private void handleDuplicateAccount(banking04.Account newAccount, Scanner scan) {
 	}
 	
 	String Account, name;
@@ -33,17 +32,17 @@ public class AccountManager implements ICustomDefine {
 		            continue;
 		        }
 				
-				System.out.print("계좌번호:");Account = scan.nextLine();
-				System.out.print("고객이름:");name = scan.nextLine();
-				System.out.print("잔고:");balance = scan.nextInt();
+				System.out.print("계좌번호:"); String Account = scan.nextLine();
+				System.out.print("고객이름:"); String name = scan.nextLine();
+				System.out.print("잔고:"); int balance = scan.nextInt();
 				System.out.print("기본이자%(정수형태로입력): ");
-				int interestRate = scan.nextInt();
+				double interestRate = scan.nextInt();
 				scan.nextLine();
 				
 			if(choice == 1) {
 				Account newAccount = new NormalAccount(Account, name, balance,
 													interestRate);
-					
+				handleDuplicateAccount(newAccount, scan);
 				if(!accounts.add(newAccount)) {
 					System.out.println("중복계좌발견됨. 덮어쓸까요?(y or n)");
 					String answer = scan.nextLine();
@@ -57,6 +56,9 @@ public class AccountManager implements ICustomDefine {
 					else if (answer.equalsIgnoreCase("n")) {
 						System.out.println("신규 등록이 취소되었습니다.");
 					}
+					else if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
+						System.out.println("y 혹은 n으로 입력하세요.");
+					}
 				}	else {
 					System.out.println("계좌개설이 완료되었습니다.");
 					}
@@ -68,7 +70,7 @@ public class AccountManager implements ICustomDefine {
 					
 					HighCreditAccount newHAccount = new HighCreditAccount
 							(Account, name, balance, interestRate, 0.0, creditGrade);
-					//accounts[numOfAccounts++] = newHAccount;
+					handleDuplicateAccount(newHAccount, scan);
 					if(!accounts.add(newHAccount)) {
 						System.out.println("중복계좌발견됨. 덮어쓸까요?(y or n)");
 						String answer = scan.nextLine();
@@ -82,6 +84,9 @@ public class AccountManager implements ICustomDefine {
 						else if (answer.equalsIgnoreCase("n")) {
 							System.out.println("신규 등록이 취소되었습니다.");
 						}
+						else if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
+							System.out.println("y 혹은 n으로 입력하세요.");
+						}
 					}	else {
 							System.out.println("계좌개설이 완료되었습니다.");
 					
@@ -90,6 +95,7 @@ public class AccountManager implements ICustomDefine {
 				} 
 			}
 	}
+		
 	public void depositMoney() {
 		System.out.println("***입   금***");
 		Scanner scan = new Scanner(System.in);
@@ -131,7 +137,6 @@ public class AccountManager implements ICustomDefine {
 		            accounts.remove(target); 
 		            target.depositMoney(amount);
 		            accounts.add(target);
-		            System.out.println("입금이 완료되었습니다.");
 		        }
 		    } else {
 		        System.out.println("해당 계좌가 존재하지 않습니다.");
@@ -158,11 +163,6 @@ public class AccountManager implements ICustomDefine {
 			if(amount % 1000 != 0) {
 				System.out.println("1000원 단위로만 출금가능함");
 			}
-//			boolean found = false;
-//		    for (int i = 0; i < numOfAccounts; i++) {
-//		        if (accounts[i].account.equals(Account)) {
-//		            found = true;
-		            
 					if(amount > balance) {
 						System.out.println("잔고가 부족합니다 금액 전체를 출금할까요? (y or n)");
 						String answer = sc.nextLine();
@@ -187,21 +187,14 @@ public class AccountManager implements ICustomDefine {
 			}	
 	}
 		
-	//챗지피티 활용
 	public void showAccInfo() {
 	    for(Account acc : accounts) {
 	    	acc.showAccInfo();
-	    	System.out.println("-----------------");
-	    }
-			if(accounts instanceof HighCreditAccount) {
-				HighCreditAccount hca = (HighCreditAccount) accounts;
-				System.out.println("신용등급>" + hca.creditGrade);
-			}
-				if(accounts.isEmpty()) {
-					System.out.println("등록된 계좌가 없습니다.");
-				}
 		System.out.println("-----------------");
 		System.out.println("전체계좌정보가 출력이 완료되었습니다");
+		}
 	}
+	
+	
 }
 

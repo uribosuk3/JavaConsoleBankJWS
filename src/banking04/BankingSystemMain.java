@@ -27,7 +27,7 @@ public class BankingSystemMain {
 				int choice = scan.nextInt();
 				scan.nextLine();
 				
-				if(choice < 1 || choice > 5) {
+				if(choice < ICustomDefine.MAKE || choice > ICustomDefine.EXIT) {
 					throw new MenuSelectException();
 				}
 				

@@ -33,7 +33,7 @@ public class HighCreditAccount extends Account {
 
 	public void depositMoney(int amount) {
 		int interest = (int)(balance * interestRate);
-		int additionalinterest = (int)(balance * additionalinterestRate);
+		int additionalinterest = (int)(balance * additionalinterestRate / 100);
 		balance += interest + additionalinterest + amount;
 		
 		System.out.println("입금이 완료되었습니다.");
