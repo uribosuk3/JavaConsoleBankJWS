@@ -8,8 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import ex20io.Circle;
-
+//모든 계좌의 기본 형태(추상 클래스)
 abstract public class Account implements Serializable {
 
 	String accountNumber;
@@ -46,47 +45,5 @@ abstract public class Account implements Serializable {
 	@Override
 	public int hashCode() {
 		return accountNumber.hashCode();
-	}
-	
-	public static void main(String[] args) {
-
-		try {
-			//인스턴스를 파일로 저장하기 위해 출력스트림 생성
-			ObjectOutputStream out =
-					new ObjectOutputStream(
-							new FileOutputStream("AccountInfo.obj")
-					);
-			
-			////여기까지 실행하면 obj 파일이 생성됨////
-			
-			/*
-			인스턴스의 복원(역직렬화)를 위한 스트림을 생성하고 메서드를
-			통해 복원한다. */
-			ObjectInputStream in =
-				new ObjectInputStream(
-					new FileInputStream("AccountInfo.obj")
-				);
-			
-			out.writeObject(acc);
-			/*
-			저장시 Object 기반으로 저장되므로 복원시에는 원래의
-			자료형으로 다운캐스팅(강제형변환) 해야한다. */
-			Account acc = (Account)in.readObject();
-			in.close();
-			
-			/*
-			개발자가 직접 정의한 클래스는 멤버메서드를 통해 정보를 출력
-			할 수 있다. */
-			acc.showAccInfo();
-		}
-		catch(ClassNotFoundException e) {
-			System.out.println("[예외]클래스없음");
-		}
-		catch(FileNotFoundException e) {
-			System.out.println("[예외]파일없음");
-		}
-		catch(IOException e) {
-			System.out.println("[Exception]뭔가없음");
-		}
 	}
 }

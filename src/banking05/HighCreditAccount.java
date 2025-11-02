@@ -1,5 +1,6 @@
 package banking05;
 
+//신용계좌 클래스(추가이자율 적용)
 public class HighCreditAccount extends Account {
 	
 	char creditGrade;

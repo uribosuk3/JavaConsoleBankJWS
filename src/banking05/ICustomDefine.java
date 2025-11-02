@@ -1,5 +1,6 @@
 package banking05;
 
+//메뉴번호, 이자율 정의
 public interface ICustomDefine {
 
 	//신용등급에 따른 추가 이자율
@@ -10,7 +11,7 @@ public interface ICustomDefine {
 	int DEPOSIT = 2;
 	int WITHDRAW = 3;
 	int INQUIRE = 4;
-	int delete = 5;
+	int Delete = 5;
 	int EXIT = 6;
 	
 }

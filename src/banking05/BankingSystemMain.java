@@ -3,10 +3,13 @@ package banking05;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+//프로그램 전체 실행 및 메뉴 표시
 public class BankingSystemMain {
 
+	// 모든 곳에서 입력을 받을 수 있도록 Scanner를 public으로 선언
 	public static Scanner scan = new Scanner(System.in);
 	
+	//메뉴를 출력하는 메서드
 	public static void menuShow() {
 		System.out.println("------------------Menu------------------");
 		System.out.print("1.계좌개설, ");
@@ -20,18 +23,23 @@ public class BankingSystemMain {
 	}
 	
 	public static void main(String[] args) {
+		//계좌 관리 기능을 담당하는 AccountManager 객체 생성
 		AccountManager handler = new AccountManager();
-				
+		
+		//while문을 사용하여 프로그램이 종료될 때까지 반복
 		while(true) {
+			//메뉴 출력
 			menuShow();
 			try {
-				int choice = scan.nextInt();
+				int choice = scan.nextInt(); //메뉴 선택 입력
 				scan.nextLine();
 				
+				//1~6사이의 숫자가 아니면 예외 발생시킴
 				if(choice < ICustomDefine.MAKE || choice > ICustomDefine.EXIT) {
 					throw new MenuSelectException();
 				}
 				
+				//메뉴에 입력한 번호에 따라 각각의 기능 수행
 				switch(choice) {
 				case ICustomDefine.MAKE :
 					handler.makeAccount();
@@ -45,7 +53,7 @@ public class BankingSystemMain {
 				case ICustomDefine.INQUIRE :
 					handler.showAccInfo();
 					break;
-				case ICustomDefine.delete :
+				case ICustomDefine.Delete :
 					handler.deleteAccount();
 					break;
 				case ICustomDefine.EXIT :
@@ -53,10 +61,15 @@ public class BankingSystemMain {
 					return;
 				}	
 			}
+			//잘못된 메뉴 선택시 예외 처리
 			catch (MenuSelectException e) {
 		        System.out.println(e.getMessage());
-		        System.out.println("메뉴는 1~5사이의 정수를 입력하세요.");
+		        System.out.println("메뉴는 1~6사이의 정수를 입력하세요.");
 		    }
+			//문자를 입력했을 때 처리
+			catch (InputMismatchException e) {
+				System.out.println("숫자만 입력 가능합니다.");
+			}
 		}
 	}
 }

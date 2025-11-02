@@ -1,5 +1,6 @@
 package banking05;
 
+//일반 계좌 클래스
 public class NormalAccount extends Account {
 
 	public NormalAccount(String account, String name, int balance,
