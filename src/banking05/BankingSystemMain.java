@@ -7,7 +7,7 @@ import java.util.Scanner;
  프로그램의 시작점 (main 함수가 있는 클래스)
  메뉴를 보여주고, 사용자가 선택한 기능(계좌개설, 입금, 출금 등)을 실행하는 역할
  */
-public class BankingSystemMain {
+public class BankingSystemMain implements ICustomDefine {
 
 	// 프로그램 전체에서 사용할 Scanner
 	public static Scanner scan = new Scanner(System.in);
