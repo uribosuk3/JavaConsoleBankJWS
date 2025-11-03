@@ -63,9 +63,11 @@ public class AccountManager implements ICustomDefine {
 						accounts.add(newAccount);
 						System.out.println("기존 계좌를 덮어썼습니다.");
 						System.out.println("계좌개설의 완료되었습니다.");
-					} else if (answer.equalsIgnoreCase("n")) {
+					} 
+					else if (answer.equalsIgnoreCase("n")) {
 						System.out.println("신규 등록이 취소되었습니다.");
-					} else if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
+					} 
+					else if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
 						System.out.println("y 혹은 n으로 입력하세요.");
 					}
 				} 
@@ -91,16 +93,18 @@ public class AccountManager implements ICustomDefine {
 						accounts.add(newHAccount);
 						System.out.println("기존 계좌를 덮어썼습니다.");
 						System.out.println("계좌개설의 완료되었습니다.");
-					} else if (answer.equalsIgnoreCase("n")) {
+					} 
+					else if (answer.equalsIgnoreCase("n")) {
 						System.out.println("신규 등록이 취소되었습니다.");
-					} else if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
+					} 
+					else if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
 						System.out.println("y 혹은 n으로 입력하세요.");
 					}
 				} 	
 				else {
 					System.out.println("계좌개설이 완료되었습니다.");
-			}
 				}
+			}
 				break;
 		}
 	}
@@ -128,7 +132,8 @@ public class AccountManager implements ICustomDefine {
 				System.out.println("500원 단위로 입금가능함");
 				return;
 			}
-		} catch (InputMismatchException e) {
+		} 
+		catch (InputMismatchException e) {
 			System.out.println("숫자를 입력해야 합니다.");
 			scan.nextLine();
 			return;
