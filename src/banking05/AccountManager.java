@@ -139,7 +139,6 @@ public class AccountManager implements ICustomDefine {
 				// 입금처리
 				acc.depositMoney(amount);
 			}
-			System.out.println("입금이 완료되었습니다.");
 		}
 	}
 
