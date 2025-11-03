@@ -75,6 +75,7 @@ public class BankingSystemMain {
 			//문자를 입력했을 때 발생하는 예외 처리
 			catch (InputMismatchException e) {
 				System.out.println("숫자만 입력 가능합니다.");
+				scan.nextLine();
 			}
 		}
 	}
