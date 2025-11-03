@@ -1,13 +1,5 @@
 package banking05;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
 //모든 계좌(기본/신용)의 기본 형태(추상 클래스)
 abstract public class Account {
 
