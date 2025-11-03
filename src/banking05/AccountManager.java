@@ -210,6 +210,10 @@ public class AccountManager implements ICustomDefine {
 	// 전체 계좌정보 출력 기능
 	public void showAccInfo() {
 		System.out.println("***계좌정보출력***");
+		/*
+		확장 for문을 사용하여 acoount 집합(Set)에 저장된 모든 계좌를 하나씩 꺼내서
+		acc라는 변수로 접근
+		 */
 		for (Account acc : accounts) {
 			System.out.println("----------------------------------------");
 			acc.showAccInfo();
