@@ -3,10 +3,13 @@ package banking05;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-//프로그램 전체 실행 및 메뉴 표시
+/*
+ 프로그램의 시작점 (main 함수가 있는 클래스)
+ 메뉴를 보여주고, 사용자가 선택한 기능(계좌개설, 입금, 출금 등)을 실행하는 역할
+ */
 public class BankingSystemMain {
 
-	// 모든 곳에서 입력을 받을 수 있도록 Scanner를 public으로 선언
+	// 프로그램 전체에서 사용할 Scanner
 	public static Scanner scan = new Scanner(System.in);
 	
 	//메뉴를 출력하는 메서드
@@ -21,12 +24,15 @@ public class BankingSystemMain {
 		System.out.println("----------------------------------------");
 		System.out.print("선택:");
 	}
-	
+	/*
+	main() 메서드 : 프로그램 시작 지점
+	무한 반복으로 메뉴를 보여주며 사용자가 입력한 번호에 따라 기능 수행
+	 */
 	public static void main(String[] args) {
-		//계좌 관리 기능을 담당하는 AccountManager 객체 생성
+		//계좌 관리 기능을 담당하는 객체 생성
 		AccountManager handler = new AccountManager();
 		
-		//while문을 사용하여 프로그램이 종료될 때까지 반복
+		//while문을 사용하여 프로그램이 종료될 때까지 반복(6번 종료를 선택할 때까지)
 		while(true) {
 			//메뉴 출력
 			menuShow();
@@ -61,12 +67,12 @@ public class BankingSystemMain {
 					return;
 				}	
 			}
-			//잘못된 메뉴 선택시 예외 처리
+			//메뉴 번호 잘못 입력 시 예외 처리
 			catch (MenuSelectException e) {
 		        System.out.println(e.getMessage());
 		        System.out.println("메뉴는 1~6사이의 정수를 입력하세요.");
 		    }
-			//문자를 입력했을 때 처리
+			//문자를 입력했을 때 발생하는 예외 처리
 			catch (InputMismatchException e) {
 				System.out.println("숫자만 입력 가능합니다.");
 			}

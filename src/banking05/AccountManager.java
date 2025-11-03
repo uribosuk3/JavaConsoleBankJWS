@@ -5,13 +5,20 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 
-//계좌 관리 기능(생성, 입금, 출금, 삭제, 조회)
+/*
+계좌를 관리하는 핵심 클래스
+계좌 생성, 입금, 출금, 조회, 삭제 등 모든 기능 담당
+HashSet을 이용해 중복 계좌를 막는다.
+ */
 public class AccountManager implements ICustomDefine {
 
 	// HashSet을 이용해 중복 계좌 방지 (계좌번호가 같으면 추가되지 않음)
 	private Set<Account> accounts = new HashSet<>();
 
-	// 계좌개설
+	/*
+	- 계좌개설
+	사용자가 보통계좌 or 신용계좌 중 하나를 선택하고 새 계좌 개설
+	 */
 	public void makeAccount() {
 		System.out.println("***신규계좌개설***");
 		while (true) {
@@ -29,7 +36,6 @@ public class AccountManager implements ICustomDefine {
 				System.out.println("잘못된 입력입니다. 1 또는 2를 입력하세요.\n");
 			}
 
-			// 공통 입력 부분
 			System.out.print("계좌번호:");
 			String Account = scan.nextLine();
 			System.out.print("고객이름:");
@@ -40,11 +46,11 @@ public class AccountManager implements ICustomDefine {
 			double interestRate = scan.nextInt();
 			scan.nextLine();
 
-			// 보통계좌 생성
+			// 보통계좌 개설
 			if (choice == 1) {
 				Account newAccount = new NormalAccount(Account, name, balance, interestRate);
 
-				// HashSet에 추가 실패 -> 이미 존재하는 계좌번호
+				// 이미 같은 계좌가 있으면 add 실패 -> 중복 확인
 				if (!accounts.add(newAccount)) {
 					System.out.println("중복계좌발견됨. 덮어쓸까요?(y or n)");
 					String answer = scan.nextLine();
@@ -67,7 +73,7 @@ public class AccountManager implements ICustomDefine {
 				break;
 			}
 
-			// 신용계좌 생성
+			// 신용계좌 개설
 			else if (choice == 2) {
 				System.out.print("신용등급(A/B/C): ");
 				char creditGrade = scan.nextLine().charAt(0);
@@ -97,7 +103,10 @@ public class AccountManager implements ICustomDefine {
 		}
 	}
 
-	//입금
+	/*
+	- 입금
+	계좌번호를 찾아 입금 처리 + 이자 적용
+	 */
 	public void depositMoney() {
 		System.out.println("***입   금***");
 		Scanner scan = new Scanner(System.in);
@@ -122,7 +131,7 @@ public class AccountManager implements ICustomDefine {
 			scan.nextLine();
 			return;
 		}
-		// 출금에서 사용한 확장for문 이용해서 계좌를 찾은 후 입금처리 시도
+		// 확장for문 이용해서 Set 안의 계좌를 찾은 후 입금처리 시도
 		for (Account acc : accounts) {
 			// 입금할 계좌 찾기
 			if (accountNumber.equals(acc.accountNumber)) {
@@ -133,6 +142,10 @@ public class AccountManager implements ICustomDefine {
 		}
 	}
 
+	/*
+	- 출금
+	출금할 계좌를 찾아 금액 차감
+	 */
 	public void withdrawMoney() {
 		System.out.println("***출   금***");
 		Scanner scan = new Scanner(System.in);
@@ -188,6 +201,7 @@ public class AccountManager implements ICustomDefine {
 		}
 	}
 
+	// 전체 계좌정보 출력 기능
 	public void showAccInfo() {
 		for (Account acc : accounts) {
 			acc.showAccInfo();
@@ -196,6 +210,7 @@ public class AccountManager implements ICustomDefine {
 		System.out.println("전체계좌정보가 출력이 완료되었습니다");
 	}
 
+	// 계좌 삭제 기능
 	public void deleteAccount() {
 		System.out.println("***계좌정보삭제***");
 		System.out.println("삭제할 계좌번호를 입력하세요.");
