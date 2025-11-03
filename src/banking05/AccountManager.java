@@ -240,7 +240,7 @@ public class AccountManager implements ICustomDefine {
 			}
 		}
 		if (isdelete == false)
-			System.out.println("----------------------------------------");
+			System.out.println("해당 계좌가 존재하지 않습니다.");
 
 	}
 }
