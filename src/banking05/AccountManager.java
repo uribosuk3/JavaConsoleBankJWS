@@ -67,7 +67,8 @@ public class AccountManager implements ICustomDefine {
 					} else if (!answer.equalsIgnoreCase("y") && !answer.equalsIgnoreCase("n")) {
 						System.out.println("y 혹은 n으로 입력하세요.");
 					}
-				} else {
+				} 
+				else {
 					System.out.println("계좌개설이 완료되었습니다.");
 				}
 				break;
@@ -95,11 +96,12 @@ public class AccountManager implements ICustomDefine {
 						System.out.println("y 혹은 n으로 입력하세요.");
 					}
 				}
-			} else {
-				System.out.println("계좌개설이 완료되었습니다.");
+			} 	
+				else {
+					System.out.println("계좌개설이 완료되었습니다.");
 
-			}
-			break;
+				}
+				break;
 		}
 	}
 
