@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 //모든 계좌(기본/신용)의 기본 형태(추상 클래스)
-abstract public class Account implements Serializable {
+abstract public class Account {
 
 	//모든 계좌가 가지는 기본 정보
 	String accountNumber;
