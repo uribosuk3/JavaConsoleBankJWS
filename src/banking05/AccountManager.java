@@ -34,6 +34,7 @@ public class AccountManager implements ICustomDefine {
 			// 입력이 잘못된 경우 안내 후 반복
 			if (choice != 1 && choice != 2) {
 				System.out.println("잘못된 입력입니다. 1 또는 2를 입력하세요.\n");
+				return;
 			}
 
 			System.out.print("계좌번호:");
