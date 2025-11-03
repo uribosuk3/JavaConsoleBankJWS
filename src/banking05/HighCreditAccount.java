@@ -21,13 +21,13 @@ public class HighCreditAccount extends Account {
 		this.creditGrade = creditGrade;
 		
 		//등급별 추가 이자율 설정
-		if(creditGrade == 'A') {
+		if(creditGrade == 'A'|| creditGrade == 'a') {
 			this.additionalinterestRate = ICustomDefine.A;
 		}
-		else if (creditGrade == 'B') {
+		else if (creditGrade == 'B'|| creditGrade == 'b') {
 			this.additionalinterestRate= ICustomDefine.B;
 		}
-		else if (creditGrade == 'C') {
+		else if (creditGrade == 'C'|| creditGrade == 'c') {
 			this.additionalinterestRate= ICustomDefine.C;
 		}
 		else {
