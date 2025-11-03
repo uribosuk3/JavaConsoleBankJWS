@@ -203,9 +203,11 @@ public class AccountManager implements ICustomDefine {
 
 	// 전체 계좌정보 출력 기능
 	public void showAccInfo() {
+		System.out.println("***계좌정보출력***");
 		for (Account acc : accounts) {
+			System.out.println("----------------------------------------");
 			acc.showAccInfo();
-			System.out.println("-----------------");
+			System.out.println("----------------------------------------");
 		}
 		System.out.println("전체계좌정보가 출력이 완료되었습니다");
 	}
@@ -228,7 +230,7 @@ public class AccountManager implements ICustomDefine {
 			}
 		}
 		if (isdelete == false)
-			System.out.println("-----------------");
+			System.out.println("----------------------------------------");
 
 	}
 }
